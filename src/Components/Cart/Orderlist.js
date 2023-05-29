@@ -4,8 +4,9 @@ const Orderlist = props=>{
     const Orderitems = props.orders.map((order) =>
       <OrderItem
         key={props.id}
+        id={order.id}
         title={props.title}
-        ImageSrc={props.ImageSrc}
+        ImageSrc={props.imageSrc}
         quntity={props.quntity}
 
       />
