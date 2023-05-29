@@ -1,20 +1,19 @@
-import React from "react";
-import OrderItem from "./OrderItem";
-const Orderlist = props=>{
-    const Orderitems = props.orders.map((order) =>
-      <OrderItem
-        key={props.id}
-        id={order.id}
-        title={props.title}
-        ImageSrc={props.imageSrc}
-        quntity={props.quntity}
+import OrderItem from './OrderItem';
 
-      />
-   )
-   return(
-    <div>
-        {Orderitems}
-    </div>
-   )
+
+function OrderList(props) {
+  const orderItems = props.orders.map((order) => (
+    <OrderItem
+      key={order.id}
+      title={order.title}
+      imageSrc={order.imageSrc}
+      price={order.price}
+      quantity={order.quantity}
+      onRemove={() => props.onRemove(order.id)}
+    />
+  ));
+
+  return <div>{orderItems}</div>;
 }
-export default Orderlist;
+
+export default OrderList;

@@ -1,86 +1,80 @@
+import CartContainer from "./Components/Cart/CartContainer";
+import Header from "./Components/Layout/Header";
 
-import React, { useState } from "react";
-
-import Header from './Components/Header'
-import { Container,Col,Row} from "react-bootstrap";
-import Products from "./Components/Products";
-import CartContext from "./Components/Context/CartContext";
-import CartContiner from "./Components/Cart/Cart-Coniner";
+import { Container, Row, Col } from "react-bootstrap";
+import ProductCard from "./Components/Layout/Product";
 
 
-
-   
-
-  const productsArr = [
-    {
-    id:'c1',
-    title: 'Colors',
+const orders = [
+  {
+    id: 1,
+    title: "Colors",
     price: 100,
-    imageSrc: 'https://prasadyash2411.github.io/ecom-website/img/Album%201.png',
-    },
-    
-    {
-    id:'c2',
-    title: 'Black and white Colors',
+     imageSrc: "https://prasadyash2411.github.io/ecom-website/img/Album%201.png",
+     quantity: 2,
+  },
+
+  {
+    id: 2,
+    title: "Black and white Colors", 
     price: 50,
-    imageSrc: 'https://prasadyash2411.github.io/ecom-website/img/Album%202.png',
-    },
-    {
-    id:'c3',
-    title: 'Yellow and Black Colors',
+    imageSrc: "https://prasadyash2411.github.io/ecom-website/img/Album%202.png",
+     quantity: 3,
+  },
+
+  {
+    id: 3,
+    title: "Yellow and Black Colors",
     price: 70,
-    imageSrc: 'https://prasadyash2411.github.io/ecom-website/img/Album%203.png',
-    },
-    {
-    id:'c4',
-    title: 'Blue Color',
+    imageSrc: "https://prasadyash2411.github.io/ecom-website/img/Album%203.png",
+    quantity: 1,
+  },
+];
+
+const productsArr = [
+  {
+    title: "Colors",
     price: 100,
-    imageSrc: 'https://prasadyash2411.github.io/ecom-website/img/Album%204.png',
-    }]
-    
-    
-const productlist = productsArr.map((product)=>{
-    return(
-       <Col key={product.url} >
-        <Products item={product}></Products>
-        </Col>
-    )
-  })
-  
-  
-  
-  
+    imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%201.png",
+  },
+  {
+    title: "Black and white Colors",
+    price: 50,
+    imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%202.png",
+  },
+  {
+    title: "Yellow and Black Colors",
+    price: 70,
+    imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%203.png",
+  },
+  {
+    title: "Blue Color",
+    price: 100,
+    imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%204.png",
+  },
+];
 
-
-
+const productsList = productsArr.map((product) => {
+  return (
+    <Col key={product.url}>
+      {" "}
+      <ProductCard item={product}></ProductCard>
+      {/* <ProductCard item={product}></ProductCard> */}
+    </Col>
+  );
+});
 
 function App() {
-const [cartShow, setCartShow] = useState()
-const [orderlist,setOrderList] = useState([])
+  return (
+    <>
+      <Header></Header>
 
-      
-const Ctxobj={
-  cartShow:cartShow,
-  setCartShow:setCartShow,
-  orderlist:orderlist,
-  setOrderList:setOrderList
-} 
-
-
- return (
-    <CartContext.Provider value={Ctxobj}>
-      <Header/>
-    <Container>
-     <Row>
-      {productlist}
-     </Row>
-    </Container>
-   <CartContiner></CartContiner>
-   
-    </CartContext.Provider>
-
+      <Container>
+        <Row>{productsList}</Row>
+      </Container>
+      <CartContainer orders ={orders}></CartContainer>
+    </>
   );
 }
 
 export default App;
-
