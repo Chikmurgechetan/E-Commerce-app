@@ -1,5 +1,3 @@
-
-
 import { Container, Row, Col, Button } from "react-bootstrap";
 
 import OrderList from "./OrderList";
@@ -7,12 +5,12 @@ import CartContext from "../Context/CartContext";
 import { useContext } from "react";
 
 function CartContainer() {
-    const ctx = useContext(CartContext)
-    const orderList =ctx.orderList;
-    let totalAmount = 0 ;
-    orderList.forEach((item)=>{
-        totalAmount += item.price*item.quantity ;
-    })
+  const ctx = useContext(CartContext);
+  const orderList = ctx.orderList;
+  let totalAmount = 0;
+  orderList.forEach((item) => {
+    totalAmount += item.price * item.quantity;
+  });
   return (
     <Container
       fluid
@@ -22,7 +20,7 @@ function CartContainer() {
       <Button
         variant="outline-danger"
         className="float-end"
-        onClick={()=>ctx.setCartVisibility(false)}
+        onClick={() => ctx.setCartVisibility(false)}
       >
         X
       </Button>
@@ -30,9 +28,7 @@ function CartContainer() {
         <Col xs={12}>
           <h4 className="text-center mb-4">My Cart</h4>
           {orderList.length > 0 ? (
-            <OrderList
-              orders={orderList}
-            />
+            <OrderList orders={orderList} />
           ) : (
             <p className="text-center">Your cart is empty.</p>
           )}

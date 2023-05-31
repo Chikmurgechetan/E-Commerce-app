@@ -1,29 +1,29 @@
-import { Button, Col, Image, Row } from 'react-bootstrap';
-import { useContext } from 'react';
-import CartContext from '../Context/CartContext';
+import { Button, Col, Image, Row } from "react-bootstrap";
+import { useContext } from "react";
+import CartContext from "../Context/CartContext";
 
 function OrderItem(props) {
-    const ctx = useContext(CartContext)
-    const orderlist = [...ctx.orderList]
+  const ctx = useContext(CartContext);
+  const orderlist = [...ctx.orderList];
 
-    const updateQuantity = (e)=>{
-        orderlist.forEach((item , i)=>{
-            if (item.id === props.id){
-                item.quantity = parseInt(e.target.value)
-            }
-        })
-        ctx.setOrderList(orderlist);
-    }
+  const updateQuantity = (e) => {
+    orderlist.forEach((item, i) => {
+      if (item.id === props.id) {
+        item.quantity = parseInt(e.target.value);
+      }
+    });
+    ctx.setOrderList(orderlist);
+  };
 
-    const removeOrder = ()=>{ 
-        orderlist.forEach((item , i)=>{
-            if (item.id === props.id){
-                orderlist.splice(i,1)
-            }
-        })
-        ctx.setOrderList(orderlist);
-    }
-    const totalprice = props.quantity * props.price
+  const removeOrder = () => {
+    orderlist.forEach((item, i) => {
+      if (item.id === props.id) {
+        orderlist.splice(i, 1);
+      }
+    });
+    ctx.setOrderList(orderlist);
+  };
+  const totalprice = props.quantity * props.price;
 
   return (
     <Row className="my-3">
@@ -45,7 +45,7 @@ function OrderItem(props) {
             Remove
           </Button>
         </div>
-        </Col>
+      </Col>
     </Row>
   );
 }
