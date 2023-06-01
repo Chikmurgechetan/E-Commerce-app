@@ -11,10 +11,17 @@ import CartContext from "./Components/Context/CartContext";
 // import StorePage from "./Pages/Store";
 import AboutPage from "./Pages/About";
 import StorePage from "./Pages/Store";
+import Rootlayout from "./Components/Layout/RouteLayout";
+
+
+
  const router = createBrowserRouter(
+ 
+  
   [
+    {path:'/',element:<Rootlayout/> , children:[
     {path:'/', element:<StorePage/>},
-    {path:'/about' , element:<AboutPage/>}
+    {path:'/about' , element:<AboutPage/>}]}
   ]
 )
 

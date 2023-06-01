@@ -1,9 +1,9 @@
 //import Header from "../components/Header";
 import { Container, Row, Col } from "react-bootstrap";
-import CartContainer from "../Components/Cart/CartContainer";
+
 import CartContext from "../Components/Context/CartContext";
 import { useContext} from "react";
-import Header from "../Components/Header";
+
 import ProductCard from "../Components/Layout/ProductCard";
 
 
@@ -26,11 +26,9 @@ function StorePage() {
 
   return (
     <>
-        <Header></Header>
       <Container>
         <Row>{productsList}</Row>
       </Container>
-     < CartContainer></CartContainer>
     </>
   );
 }
