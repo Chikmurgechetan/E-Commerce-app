@@ -12,6 +12,7 @@ import CartContext from "./Components/Context/CartContext";
 import AboutPage from "./Pages/About";
 import StorePage from "./Pages/Store";
 import Rootlayout from "./Components/Layout/RouteLayout";
+import HomePage from "./Pages/Home";
 
 
 
@@ -21,7 +22,8 @@ import Rootlayout from "./Components/Layout/RouteLayout";
   [
     {path:'/',element:<Rootlayout/> , children:[
     {path:'/', element:<StorePage/>},
-    {path:'/about' , element:<AboutPage/>}]}
+    {path:'/about' , element:<AboutPage/>},
+    {path:'/Home', element:<HomePage/>}]}
   ]
 )
 
