@@ -11,29 +11,74 @@ function Header() {
     cartItemCount += item.quantity;
   });
   return (
-    <Navbar bg="dark" variant="dark" expand="lg">
+  
+    <Navbar
+      bg="dark"
+      variant="dark"
+      expand="lg"
+      style={{ marginBottom: "1rem" }}
+    >
       <Container>
-        <Navbar.Brand href="#">My Store</Navbar.Brand>
+        
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">
-            <Link to="/home" className="Nav-link">Home</Link>
-            <Link to="/" className="Nav-link">Store</Link>
-            <Link to="/About" className="Nav-link">About</Link>
-
-            {/* <Nav.Link href="#">Home</Nav.Link>
-            <Nav.Link href="#">Store</Nav.Link>
-            <Nav.Link href="#">About</Nav.Link>  */}
+          <Nav className="mx-auto">
+            <Link
+              to="/home"
+              className="Nav-link"
+              style={{
+                marginRight: "1rem",
+                fontSize: "1.6rem",
+                color: "White",
+              }}
+            >
+              HOME
+            </Link>
+            <Link
+              to="/"
+              className="Nav-link"
+              style={{
+                marginRight: "1rem",
+                fontSize: "1.6rem",
+                color: "White",
+              }}
+            >
+              STORE
+            </Link>
+            <Link
+              to="/About"
+              className="Nav-link"
+              style={{ fontSize: "1.6rem", color: "White", marginRight: "1rem", }}
+            >
+              ABOUT
+            </Link>
+            <Link
+              to="/Contact"
+              className="Nav-link"
+              style={{ fontSize: "1.6rem", color: "White" }}
+            >
+              CONTACT US
+            </Link>
           </Nav>
           <Nav>
             <Button
               variant="outline-warning"
               onClick={() => ctx.setCartVisibility(!ctx.cartVisibility)}
-            >{`My Cart ${cartItemCount}`}</Button>
+              style={{ marginLeft: "auto" }}
+            >
+              <i
+                className="bi bi-cart-fill"
+                style={{ marginRight: "0.5rem" }}
+              ></i>
+              {`My Cart ${cartItemCount}`}
+            </Button>
           </Nav>
         </Navbar.Collapse>
       </Container>
     </Navbar>
+    
+    
   );
 }
+
 export default Header;

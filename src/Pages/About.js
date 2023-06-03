@@ -5,10 +5,9 @@ const AboutPage = () => {
   return (
     <>
       <Container>
-      
         <Row>
           <Col>
-          <h2>ABOUT US</h2>
+            <h2>ABOUT US</h2>
             <div>
               <img
                 src={BandImage}
