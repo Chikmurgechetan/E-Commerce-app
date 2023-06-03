@@ -24,7 +24,7 @@ function Header() {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mx-auto">
             <Link
-              to="/home"
+              to="/"
               className="Nav-link"
               style={{
                 marginRight: "1rem",
@@ -35,7 +35,7 @@ function Header() {
               HOME
             </Link>
             <Link
-              to="/"
+              to="/store"
               className="Nav-link"
               style={{
                 marginRight: "1rem",

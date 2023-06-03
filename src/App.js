@@ -1,32 +1,13 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-
+import { Route, Routes } from "react-router-dom";
 import { useState } from "react";
-// import CartContainer from "./Components/Cart/CartContainer";
-// import Header from "./Components/Header";
-
-// import { Container, Row, Col } from "react-bootstrap";
-// import ProductCard from "./Components/Layout/ProductCard";
+import CartContainer from "./Components/Cart/CartContainer";
+import Header from "./Components/Header";
 import CartContext from "./Components/Context/CartContext";
 
-// import StorePage from "./Pages/Store";
 import AboutPage from "./Pages/About";
 import StorePage from "./Pages/Store";
-import Rootlayout from "./Components/Layout/RouteLayout";
 import HomePage from "./Pages/Home";
 import ContactUs from "./Pages/ContactUs";
-
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Rootlayout />,
-    children: [
-      { path: "/", element: <StorePage /> },
-      { path: "/about", element: <AboutPage /> },
-      { path: "/Home", element: <HomePage /> },
-      { path: "/Contact", element: <ContactUs/>}
-    ],
-  },
-]);
 
 const productsArr = [
   {
@@ -55,13 +36,7 @@ const productsArr = [
   },
 ];
 
-// const productsList = productsArr.map((product) => {
-//   return (
-//     <Col key={product.id}>
-//       <ProductCard item={product}></ProductCard>
-//     </Col>
-//   );
-// });
+
 
 function App() {
   const [cartVisibility, setCartVisibility] = useState(false);
@@ -77,14 +52,15 @@ function App() {
 
   return (
     <CartContext.Provider value={ctxObj}>
-      {/* <Header></Header>
-      <Container>
-        <Row>{productsList}</Row>
-      </Container>
-      {cartVisibility && <CartContainer></CartContainer>} 
-       */}
+      <Header></Header>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/store" element={<StorePage />} />
+        <Route path="/about" element={<AboutPage />} />
+        <Route path="/Contact" element={<ContactUs />} />
+      </Routes>
 
-      <RouterProvider router={router} />
+      {cartVisibility && <CartContainer></CartContainer>}
     </CartContext.Provider>
   );
 }
