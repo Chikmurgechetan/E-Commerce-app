@@ -60,9 +60,9 @@ const[phone, setPhone] = useState("");
 
   return (
     <Container className="mt-5">
-      <Form onSubmit={submitHandler}> 
+      <Form onSubmit={submitHandler} style={{fontWeight:"bold"}}> 
         <FormGroup controlId="formName">
-          <FormLabel>Name</FormLabel>
+          <FormLabel >Name</FormLabel>
           <FormControl type="text" placeholder="Enter a name" value={name} onChange={nameChange } required/>
         </FormGroup>
         <FormGroup controlId="formEmail">
@@ -70,7 +70,7 @@ const[phone, setPhone] = useState("");
           <FormControl type="email" placeholder="Enter a Email Id" value={email} onChange={emailChange} required />
         </FormGroup>
         <FormGroup controlId="formPhone">
-          <FormLabel>Name</FormLabel>
+          <FormLabel>Phone</FormLabel>
           <FormControl type="tel" placeholder="Enter a PHone number" value={phone} onChange={phoneChange} />
         </FormGroup>
 
