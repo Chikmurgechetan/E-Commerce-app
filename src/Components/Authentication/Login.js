@@ -1,5 +1,14 @@
 import React, { useState } from "react";
-import { Form, Container, FormControl, FormGroup, FormLabel, FormText, Nav, Button } from "react-bootstrap";
+import {
+  Form,
+  Container,
+  FormControl,
+  FormGroup,
+  FormLabel,
+  FormText,
+  Nav,
+  Button,
+} from "react-bootstrap";
 
 const Login = () => {
   const [isLogeIn, setIsLogeIn] = useState(true); // Initialize with a default value
@@ -8,42 +17,52 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-
   const submitHandler = (event) => {
     event.preventDefault();
-  
-     setIsLoading(true);
+
+    setIsLoading(true);
+    let url;
     if (isLogeIn) {
       // Handle sign in logic
+      url =
+        "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyB9W4dGeTDItrXbHl_cEzNUGxRQsT6CLHU";
     } else {
-      fetch("https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyB9W4dGeTDItrXbHl_cEzNUGxRQsT6CLHU", {
-        method: "POST",
-        body: JSON.stringify({
-          email: email,
-          password: password,
-          returnSecureToken: true,
-        }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-        .then((res) => {
-            setIsLoading(false);
-          if (res.ok) {
-            // Handle success
-          } else {
-            return res.json().then((data) => {
-              // Handle error
-              let errorMessage ="Authentication failed: "
+      url =
+        "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyB9W4dGeTDItrXbHl_cEzNUGxRQsT6CLHU";
+    }
+    fetch(url, {
+      method: "POST",
+      body: JSON.stringify({
+        email: email,
+        password: password,
+        returnSecureToken: true,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => {
+        setIsLoading(false);
+        if (res.ok) {
+          return res.json();
+        } else {
+          return res.json().then((data) => {
+            // Handle error
+            let errorMessage = "Authentication failed: ";
             //   if(data && data.error &&  data.error.message){
             //    errorMessage = data.error.message;
             //   }
-                alert(errorMessage);
-            });
-          }
-        })
-      
-    }
+
+            throw new Error(errorMessage);
+          });
+        }
+      })
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => {
+        alert(error.message);
+      });
   };
 
   const changeEmail = (event) => {
@@ -53,8 +72,6 @@ const Login = () => {
   const changePassword = (event) => {
     setPassword(event.target.value);
   };
-
-
 
   const handleSignIn = () => {
     setIsLogeIn(true);
@@ -67,7 +84,10 @@ const Login = () => {
   return (
     <>
       <Container className="mt-2">
-        <Nav variant="pills" defaultActiveKey={isLogeIn ? "sign-in" : "sign-up"}>
+        <Nav
+          variant="pills"
+          defaultActiveKey={isLogeIn ? "sign-in" : "sign-up"}
+        >
           <Nav.Item>
             <Nav.Link eventKey="sign-up" onClick={handleSignUp}>
               Sign Up
@@ -85,19 +105,37 @@ const Login = () => {
             <>
               <FormGroup controlId="formBasicEmail">
                 <FormLabel>Email address</FormLabel>
-                <FormControl type="email" placeholder="Enter email" value={email} onChange={changeEmail} required />
+                <FormControl
+                  type="email"
+                  placeholder="Enter email"
+                  value={email}
+                  onChange={changeEmail}
+                  required
+                />
               </FormGroup>
 
               <FormGroup controlId="formBasicPassword">
                 <FormLabel>Password</FormLabel>
-                <FormControl type="password" placeholder="Password" value={password} onChange={changePassword} required />
+                <FormControl
+                  type="password"
+                  placeholder="Password"
+                  value={password}
+                  onChange={changePassword}
+                  required
+                />
               </FormGroup>
             </>
           ) : (
             <>
               <FormGroup controlId="formBasicEmail">
                 <FormLabel>Email address</FormLabel>
-                <FormControl type="email" placeholder="Enter email" value={email} onChange={changeEmail} required />
+                <FormControl
+                  type="email"
+                  placeholder="Enter email"
+                  value={email}
+                  onChange={changeEmail}
+                  required
+                />
                 <FormText className="text-muted">
                   We'll never share your email with anyone else.
                 </FormText>
@@ -105,14 +143,23 @@ const Login = () => {
 
               <FormGroup controlId="formBasicPassword">
                 <FormLabel>Password</FormLabel>
-                <FormControl type="password" placeholder="Password" value={password} onChange={changePassword} required />
+                <FormControl
+                  type="password"
+                  placeholder="Password"
+                  value={password}
+                  onChange={changePassword}
+                  required
+                />
               </FormGroup>
-
-             
             </>
           )}
           <div className="text-center">
-            <Button variant="outline-primary" type="submit" className="mt-3" style={{ width: "10rem" }}>
+            <Button
+              variant="outline-primary"
+              type="submit"
+              className="mt-3"
+              style={{ width: "10rem" }}
+            >
               {!isLoading ? (isLogeIn ? "Sign In" : "Sign Up") : "Loading..."}
             </Button>
           </div>
