@@ -3,15 +3,18 @@ import { useState } from "react";
 import CartContainer from "./Components/Cart/CartContainer";
 import Header from "./Components/Header";
 import CartContext from "./Components/Context/CartContext";
-import Smart from '../src/Assets/Watch1.jpg';
-import Earbud from '../src/Assets/earbud2.jpg';
-import Tshirt from '../src/Assets/t -shirt3.jpg';
+import Smart from "../src/Assets/Watch1.jpg";
+import Earbud from "../src/Assets/earbud2.jpg";
+import Tshirt from "../src/Assets/t -shirt3.jpg";
 
 import AboutPage from "./Pages/About";
 import StorePage from "./Pages/Store";
 import HomePage from "./Pages/Home";
 import ContactUs from "./Pages/ContactUs";
 import ProductDetails from "./Pages/ProductDetails";
+import Login from "./Components/Authentication/Login";
+
+
 
 const productsArr = [
   {
@@ -22,8 +25,7 @@ const productsArr = [
     color: "White",
     discription:
       "A Good Smart Watch In this world Indian famius brand smart Watch",
-    imageSrc:Smart,
-     
+    imageSrc: Smart,
   },
   {
     id: "p2",
@@ -33,9 +35,9 @@ const productsArr = [
     color: "black",
     discription:
       "I Like This Brand earbuds On the My ear for a good sound Quality",
-    imageSrc:Earbud,
+    imageSrc: Earbud,
   },
-      
+
   {
     id: "p3",
     title: "T-shirt",
@@ -45,13 +47,14 @@ const productsArr = [
     discription:
       "I like This fitting of the t shirt i love this one size and the color is awsome",
     imageSrc: Tshirt,
-     
   },
 ];
 
 function App() {
   const [cartVisibility, setCartVisibility] = useState(false);
   const [orderList, setOrderList] = useState([]);
+  const [LoginModalVisable,setLoginModalVisable] = useState()
+ 
 
   const ctxObj = {
     productsList: productsArr,
@@ -59,17 +62,25 @@ function App() {
     setCartVisibility: setCartVisibility,
     orderList: orderList,
     setOrderList: setOrderList,
+    isSignIn:false,
+    LoginModalVisable:LoginModalVisable,
+    setLoginModalVisable:setLoginModalVisable
+  
+   
   };
 
   return (
     <CartContext.Provider value={ctxObj}>
-      <Header></Header>
+   
+       <Header></Header>
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/store" element={<StorePage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/Contact" element={<ContactUs />} />
         <Route path="/products/:productID" element={<ProductDetails />} />
+        <Route path="/login" element={<Login/>}/>
+     
       </Routes>
 
       {cartVisibility && <CartContainer></CartContainer>}

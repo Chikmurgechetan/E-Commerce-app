@@ -18,21 +18,21 @@ const ProductDetails = () => {
   const ctx = useContext(CartContext);
   const productsList = ctx.productsList;
   const product = { ...productsList.filter((item) => item.id === id)[0] };
- 
+
   const orderList = [...ctx.orderList];
-  const buttonHandler = () =>{
+  const buttonHandler = () => {
     const n = orderList.length;
-    for(let i=0;i<=n;i++){
-        if(i<n && orderList[i].id === id){
-            orderList[i].quantity +=1;
-            break;
-        }else if(i===n){
-            const obj ={...product,quantity:1};
-            orderList.push(obj);
-        }
+    for (let i = 0; i <= n; i++) {
+      if (i < n && orderList[i].id === id) {
+        orderList[i].quantity += 1;
+        break;
+      } else if (i === n) {
+        const obj = { ...product, quantity: 1 };
+        orderList.push(obj);
+      }
     }
     ctx.setOrderList(orderList);
-  }
+  };
 
   return (
     <>
@@ -40,7 +40,16 @@ const ProductDetails = () => {
         <Row>
           <Col md={6}>
             <Card>
-              <CardImg variant="top" src={product.imageSrc} style={{height:"500px" , width:"700px",borderRadius:"20px" , marginLeft:'50px'}} />
+              <CardImg
+                variant="top"
+                src={product.imageSrc}
+                style={{
+                  height: "500px",
+                  width: "700px",
+                  borderRadius: "20px",
+                  marginLeft: "50px",
+                }}
+              />
               <Card.Body>
                 <Card.Text>Nice Product You can Buy </Card.Text>
               </Card.Body>
@@ -57,7 +66,9 @@ const ProductDetails = () => {
                   <ListGroupItem>Color :- {product.color}</ListGroupItem>
                 </ListGroup>
                 <div className="d-grid gap-2 mt-3">
-                  <Button variant="dark" onClick={buttonHandler}>Add to Cart</Button>
+                  <Button variant="dark" onClick={buttonHandler}>
+                    Add to Cart
+                  </Button>
                 </div>
               </Card.Body>
             </Card>

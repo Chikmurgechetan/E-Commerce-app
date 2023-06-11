@@ -5,6 +5,11 @@ const CartContext = React.createContext({
   setCartVisibility: () => {},
   orderList: [],
   setOrderList: () => {},
+
+  isSignIn:false,
+  LoginModalVisable:false,
+  setLoginModalVisable: () =>{}
+
 });
 
 export default CartContext;

@@ -6,12 +6,12 @@ import { Link } from "react-router-dom";
 function Header() {
   const ctx = useContext(CartContext);
   const orderlist = ctx.orderList;
+
   let cartItemCount = 0;
   orderlist.forEach((item) => {
     cartItemCount += item.quantity;
   });
   return (
-  
     <Navbar
       bg="dark"
       variant="dark"
@@ -19,7 +19,6 @@ function Header() {
       style={{ marginBottom: "1rem" }}
     >
       <Container>
-        
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mx-auto">
@@ -48,7 +47,11 @@ function Header() {
             <Link
               to="/About"
               className="Nav-link"
-              style={{ fontSize: "1.6rem", color: "White", marginRight: "1rem", }}
+              style={{
+                fontSize: "1.6rem",
+                color: "White",
+                marginRight: "1rem",
+              }}
             >
               ABOUT
             </Link>
@@ -57,8 +60,11 @@ function Header() {
               className="Nav-link"
               style={{ fontSize: "1.6rem", color: "White" }}
             >
-              CONTACT US
+              CONTACT
             </Link>
+          </Nav>
+          <Nav>
+            <Link to='/login' className="Nav-link" style={{fontSize:'1.5rem',color:'blue',marginRight:'10px'}}>LOGiN</Link>
           </Nav>
           <Nav>
             <Button
@@ -76,8 +82,6 @@ function Header() {
         </Navbar.Collapse>
       </Container>
     </Navbar>
-    
-    
   );
 }
 
