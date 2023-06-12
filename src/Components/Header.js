@@ -64,18 +64,20 @@ function Header() {
             </Link>
           </Nav>
           <Nav>
-            <Link to='/login' className="Nav-link" style={{fontSize:'1.5rem',color:'blue',marginRight:'10px'}}>LOGiN</Link>
+            <Link
+              to="/login"
+              className="Nav-link"
+              style={{ fontSize: "1.5rem", color: "blue", marginRight: "10px" }}
+            >LOGIN</Link>
           </Nav>
+      
           <Nav>
             <Button
               variant="outline-warning"
               onClick={() => ctx.setCartVisibility(!ctx.cartVisibility)}
               style={{ marginLeft: "auto" }}
             >
-              <i
-                className="bi bi-cart-fill"
-                style={{ marginRight: "0.5rem" }}
-              ></i>
+             
               {`My Cart ${cartItemCount}`}
             </Button>
           </Nav>

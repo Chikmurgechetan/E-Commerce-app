@@ -53,8 +53,9 @@ const productsArr = [
 function App() {
   const [cartVisibility, setCartVisibility] = useState(false);
   const [orderList, setOrderList] = useState([]);
-  const [LoginModalVisable,setLoginModalVisable] = useState()
- 
+
+  
+   
 
   const ctxObj = {
     productsList: productsArr,
@@ -62,11 +63,8 @@ function App() {
     setCartVisibility: setCartVisibility,
     orderList: orderList,
     setOrderList: setOrderList,
-    isSignIn:false,
-    LoginModalVisable:LoginModalVisable,
-    setLoginModalVisable:setLoginModalVisable
-  
-   
+ 
+    
   };
 
   return (
@@ -79,7 +77,8 @@ function App() {
         <Route path="/about" element={<AboutPage />} />
         <Route path="/Contact" element={<ContactUs />} />
         <Route path="/products/:productID" element={<ProductDetails />} />
-        <Route path="/login" element={<Login/>}/>
+    
+        <Route  exact path='/login' element={<Login />}/>
      
       </Routes>
 
