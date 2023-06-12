@@ -1,13 +1,13 @@
 import React, { useRef, useState } from "react";
-import { useReducer } from "react";
+
 import { Button, Container, Form, FormGroup } from "react-bootstrap";
 
 const Login = () => {
   const [isLogin, setIsLogin] = useState(true);
   const [isLodingIn, setIsLodingIn] = useState(false);
 
- const emailInputRef = useRef();
- const passwordInputRef = useRef();
+  const emailInputRef = useRef();
+  const passwordInputRef = useRef();
 
   const switchHandler = () => {
     setIsLogin((prevState) => !prevState);
@@ -15,44 +15,52 @@ const Login = () => {
 
   const submitHandler = (event) => {
     event.preventDefault();
- 
+
     const enteredEmail = emailInputRef.current.value;
     const enterdPassword = passwordInputRef.current.value;
 
     setIsLodingIn(true);
+    let url;
     if (isLogin) {
+      url = "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyB9W4dGeTDItrXbHl_cEzNUGxRQsT6CLHU"
     } else {
-      fetch(
-        "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyB9W4dGeTDItrXbHl_cEzNUGxRQsT6CLHU",
-        {
-          method: "POST",
-          body: JSON.stringify({
-            email: enteredEmail,
-            password: enterdPassword,
-            returnSecureToken: true,
-          }),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      ).then((res) => {
-        setIsLodingIn(false);
-        if (res.ok) {
-        } else {
-          res.json().then((data) => {
-            let errorMessage = "Athontication is failed";
-            if(data && data.error && data.error.message){
-              errorMessage = data.error.messsage;
-          }
-            alert(errorMessage);
-            console.log(data);
-          });
-        }
-      });
+     url = "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyB9W4dGeTDItrXbHl_cEzNUGxRQsT6CLHU"
     }
-  };
+    fetch(
+      url,
+   {
+     method: "POST",
+     body: JSON.stringify({
+       email: enteredEmail,
+       password: enterdPassword,
+       returnSecureToken: true,
+     }),
+     headers: {
+       "Content-Type": "application/json",
+     },
+   }
+ ).then((res) => {
+   setIsLodingIn(false);
+   if (res.ok) {
+    return res.json()
+   } else {
+     res.json().then((data) => {
+       let errorMessage = "Athontication is failed";
+      //  if (data && data.error && data.error.message) {
+      //    errorMessage = data.error.messsage;
+      //  }
+       
+      throw new Error(errorMessage)
+     });
+   }
+ }).then(data =>{
+   console.log(data)
+ })
+ .catch(error =>{
+  alert(error.message);
+ })
 
- 
+  };
 
   return (
     <>
