@@ -20,6 +20,7 @@ const ProductDetails = () => {
   const product = { ...productsList.filter((item) => item.id === id)[0] };
 
   const orderList = [...ctx.orderList];
+
   const buttonHandler = () => {
     const n = orderList.length;
     for (let i = 0; i <= n; i++) {

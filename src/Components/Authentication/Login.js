@@ -1,13 +1,20 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState,useContext } from "react";
 
 import { Button, Container, Form, FormGroup } from "react-bootstrap";
+import CartContext from "../Context/CartContext";
 
 const Login = () => {
+
+
   const [isLogin, setIsLogin] = useState(true);
   const [isLodingIn, setIsLodingIn] = useState(false);
 
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
+
+
+  
+  const Ctx = useContext(CartContext);
 
   const switchHandler = () => {
     setIsLogin((prevState) => !prevState);
@@ -22,44 +29,46 @@ const Login = () => {
     setIsLodingIn(true);
     let url;
     if (isLogin) {
-      url = "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyB9W4dGeTDItrXbHl_cEzNUGxRQsT6CLHU"
+      url =
+        "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyB9W4dGeTDItrXbHl_cEzNUGxRQsT6CLHU";
     } else {
-     url = "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyB9W4dGeTDItrXbHl_cEzNUGxRQsT6CLHU"
+      url =
+        "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyB9W4dGeTDItrXbHl_cEzNUGxRQsT6CLHU";
     }
-    fetch(
-      url,
-   {
-     method: "POST",
-     body: JSON.stringify({
-       email: enteredEmail,
-       password: enterdPassword,
-       returnSecureToken: true,
-     }),
-     headers: {
-       "Content-Type": "application/json",
-     },
-   }
- ).then((res) => {
-   setIsLodingIn(false);
-   if (res.ok) {
-    return res.json()
-   } else {
-     res.json().then((data) => {
-       let errorMessage = "Athontication is failed";
-      //  if (data && data.error && data.error.message) {
-      //    errorMessage = data.error.messsage;
-      //  }
-       
-      throw new Error(errorMessage)
-     });
-   }
- }).then(data =>{
-   console.log(data)
- })
- .catch(error =>{
-  alert(error.message);
- })
+    fetch(url, {
+      method: "POST",
+      body: JSON.stringify({
+        email: enteredEmail,
+        password: enterdPassword,
+        returnSecureToken: true,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => {
+        setIsLodingIn(false);
+        if (res.ok) {
+          return res.json();
+        } else {
+          res.json().then((data) => {
+            let errorMessage = "Athontication is failed";
+            //  if (data && data.error && data.error.message) {
+            //    errorMessage = data.error.messsage;
+            //  }
 
+            throw new Error(errorMessage);
+          });
+        }
+      })
+      .then((data) => {
+        Ctx.setIsLogedIn(true)
+        Ctx.setIdToken(data.idToken);
+        console.log(data.idToken);
+      })
+      .catch((error) => {
+        alert(error.message);
+      });
   };
 
   return (
@@ -75,7 +84,7 @@ const Login = () => {
             marginRight: "20%",
           }}
         >
-          <h2 style={{ color: "blue", textDecoration: "underline black" }}>
+          <h2 style={{ color: "blue", textDecoration: "underline black",textTransform:'capitalize' }}>
             {isLogin ? "Login" : "Sing Up"}
           </h2>
           <Form

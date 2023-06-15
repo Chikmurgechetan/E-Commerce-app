@@ -13,6 +13,7 @@ import HomePage from "./Pages/Home";
 import ContactUs from "./Pages/ContactUs";
 import ProductDetails from "./Pages/ProductDetails";
 import Login from "./Components/Authentication/Login";
+import MyProfile from "./Pages/MyProfile";
 
 
 
@@ -54,7 +55,8 @@ function App() {
   const [cartVisibility, setCartVisibility] = useState(false);
   const [orderList, setOrderList] = useState([]);
 
-  
+  const[idToken, setIdToken]=useState('');
+  const[isLogedIn, setIsLogedIn] = useState(false)
    
 
   const ctxObj = {
@@ -63,7 +65,11 @@ function App() {
     setCartVisibility: setCartVisibility,
     orderList: orderList,
     setOrderList: setOrderList,
- 
+   
+    isLogedIn:isLogedIn,
+    setIsLogedIn:setIsLogedIn,
+    idToken:idToken,
+    setIdToken:setIdToken,
     
   };
 
@@ -72,12 +78,12 @@ function App() {
    
        <Header></Header>
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route path="/home" element={<HomePage />} />
         <Route path="/store" element={<StorePage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/Contact" element={<ContactUs />} />
         <Route path="/products/:productID" element={<ProductDetails />} />
-    
+          <Route path="/profile" element={<MyProfile/>}/>
         <Route  exact path='/login' element={<Login />}/>
      
       </Routes>
