@@ -1,11 +1,13 @@
 import React, { useRef, useState,useContext } from "react";
 
 import { Button, Container, Form, FormGroup } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import CartContext from "../Context/CartContext";
 
 const Login = () => {
+  
 
-
+  const navigate = useNavigate();
   const [isLogin, setIsLogin] = useState(true);
   const [isLodingIn, setIsLodingIn] = useState(false);
 
@@ -64,7 +66,8 @@ const Login = () => {
       .then((data) => {
         Ctx.setIsLogedIn(true)
         Ctx.setIdToken(data.idToken);
-        console.log(data.idToken);
+        navigate("/store");
+
       })
       .catch((error) => {
         alert(error.message);

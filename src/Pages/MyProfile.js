@@ -1,13 +1,15 @@
 
 import React, {useContext, useState } from 'react';
-
 import userImage from '../Assets/download.png';
 import CartContext from '../Components/Context/CartContext';
 import { Col, Container, Form,Button,Image,Row } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
+
 
 const MyProfile = () => {
    const [newPasword, setNewPassword] = useState('');
    const authCtx=useContext(CartContext);
+   const navigate = useNavigate();
   
   const submitHandler =  async (event) =>{
     event.preventDefault();
@@ -33,7 +35,8 @@ const MyProfile = () => {
           throw new Error(data.error.message)
        }else {
         authCtx.setIsLogedIn(false);
-      authCtx.setIdToken(null);
+        authCtx.setIdToken(null);
+        navigate("/store");
      }
 
     
