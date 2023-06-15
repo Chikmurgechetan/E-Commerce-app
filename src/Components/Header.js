@@ -13,9 +13,7 @@ function Header() {
     cartItemCount += item.quantity;
   });
 
-  const handleLogout = () => {
-    ctx.setIsLogedIn(); // Call the logout function from AuthoContext
-  };
+
 
   return (
     <Navbar
@@ -94,7 +92,7 @@ function Header() {
           {LoggIn && (
             <Button
               variant="link"
-              onClick={handleLogout}
+           
               style={{ fontSize: "1.5rem", color: "blue" }}
             >
               LOGOUT

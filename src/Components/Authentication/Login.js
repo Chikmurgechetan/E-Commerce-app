@@ -1,12 +1,10 @@
-import React, { useRef, useState,useContext } from "react";
+import React, { useRef, useState, useContext } from "react";
 
 import { Button, Container, Form, FormGroup } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import CartContext from "../Context/CartContext";
 
 const Login = () => {
-  
-
   const navigate = useNavigate();
   const [isLogin, setIsLogin] = useState(true);
   const [isLodingIn, setIsLodingIn] = useState(false);
@@ -14,8 +12,6 @@ const Login = () => {
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
 
-
-  
   const Ctx = useContext(CartContext);
 
   const switchHandler = () => {
@@ -64,10 +60,9 @@ const Login = () => {
         }
       })
       .then((data) => {
-        Ctx.setIsLogedIn(true)
+        Ctx.setIsLogedIn(true);
         Ctx.setIdToken(data.idToken);
         navigate("/store");
-
       })
       .catch((error) => {
         alert(error.message);
@@ -87,7 +82,13 @@ const Login = () => {
             marginRight: "20%",
           }}
         >
-          <h2 style={{ color: "blue", textDecoration: "underline black",textTransform:'capitalize' }}>
+          <h2
+            style={{
+              color: "blue",
+              textDecoration: "underline black",
+              textTransform: "capitalize",
+            }}
+          >
             {isLogin ? "Login" : "Sing Up"}
           </h2>
           <Form
