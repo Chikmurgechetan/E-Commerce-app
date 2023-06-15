@@ -13,7 +13,9 @@ function Header() {
     cartItemCount += item.quantity;
   });
 
-
+  const LogoutHandler = () => {
+    ctx.setIsLogedIn();
+  };
 
   return (
     <Navbar
@@ -57,18 +59,18 @@ function Header() {
               </Nav.Link>
             </Nav>
           )}
-          
+
           {LoggIn && (
-  <Nav>
-    <Nav.Link
-      as={Link}
-      to="/profile"
-      style={{ fontSize: "1.6rem", color: "white" }}
-    >
-      My Profile
-    </Nav.Link>
-  </Nav>
-)}
+            <Nav>
+              <Nav.Link
+                as={Link}
+                to="/profile"
+                style={{ fontSize: "1.6rem", color: "white" }}
+              >
+                My Profile
+              </Nav.Link>
+            </Nav>
+          )}
 
           {!LoggIn && (
             <Nav>
@@ -87,13 +89,11 @@ function Header() {
             </Nav>
           )}
 
-        
-
           {LoggIn && (
             <Button
               variant="link"
-           
               style={{ fontSize: "1.5rem", color: "blue" }}
+              onClick={LogoutHandler}
             >
               LOGOUT
             </Button>
