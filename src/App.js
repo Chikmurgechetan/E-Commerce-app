@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes,Navigate } from "react-router-dom";
 import { useState } from "react";
 import CartContainer from "./Components/Cart/CartContainer";
 import Header from "./Components/Header";
@@ -78,14 +78,15 @@ function App() {
    
        <Header></Header>
       <Routes>
-        <Route path="/home" element={<HomePage />} />
-        <Route path="/store" element={<StorePage />} />
-        <Route path="/about" element={<AboutPage />} />
-        <Route path="/Contact" element={<ContactUs />} />
-        <Route path="/products/:productID" element={<ProductDetails />} />
-          <Route path="/profile" element={<MyProfile/>}/>
-        <Route  exact path='/login' element={<Login />}/>
+       {isLogedIn && ( <Route path="/home" element={<HomePage />} />)}
+       <Route path="/store" element={<StorePage />} />
+      { isLogedIn && (   <Route path="/about" element={<AboutPage />} />)}
+      { isLogedIn && (   <Route path="/Contact" element={<ContactUs />} />)}
+       {isLogedIn && ( <Route path="/products/:productID" element={<ProductDetails />} />)}
+      {isLogedIn && (  <Route path="/profile" element={<MyProfile/>}/>)}
+      { !isLogedIn && ( <Route  exact path='/login' element={<Login />}/>)}
      
+      <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
 
       {cartVisibility && <CartContainer></CartContainer>}

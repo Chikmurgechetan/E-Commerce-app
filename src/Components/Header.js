@@ -15,6 +15,7 @@ function Header() {
 
   const LogoutHandler = () => {
     ctx.setIsLogedIn();
+   localStorage.removeItem("token");
   };
 
   return (

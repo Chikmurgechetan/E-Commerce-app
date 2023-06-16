@@ -56,16 +56,19 @@ const Login = () => {
             //  }
 
             throw new Error(errorMessage);
+        
           });
         }
       })
       .then((data) => {
         Ctx.setIsLogedIn(true);
         Ctx.setIdToken(data.idToken);
+        localStorage.setItem("token", data.idToken);
         navigate("/store");
       })
       .catch((error) => {
         alert(error.message);
+       
       });
   };
 
