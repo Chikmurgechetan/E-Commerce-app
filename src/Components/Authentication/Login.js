@@ -18,7 +18,9 @@ const Login = () => {
     setIsLogin((prevState) => !prevState);
   };
 
-  const submitHandler = (event) => {
+
+
+  const submitHandler = async (event) => {
     event.preventDefault();
 
     const enteredEmail = emailInputRef.current.value;
@@ -33,7 +35,7 @@ const Login = () => {
       url =
         "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyB9W4dGeTDItrXbHl_cEzNUGxRQsT6CLHU";
     }
-    fetch(url, {
+    const response = await fetch(url, {
       method: "POST",
       body: JSON.stringify({
         email: enteredEmail,
@@ -43,33 +45,25 @@ const Login = () => {
       headers: {
         "Content-Type": "application/json",
       },
-    })
-      .then((res) => {
-        setIsLodingIn(false);
-        if (res.ok) {
-          return res.json();
-        } else {
-          res.json().then((data) => {
-            let errorMessage = "Athontication is failed";
-            //  if (data && data.error && data.error.message) {
-            //    errorMessage = data.error.messsage;
-            //  }
-
-            throw new Error(errorMessage);
-        
-          });
-        }
-      })
-      .then((data) => {
+    });
+    const data = await response.json();
+    if (data.error) {
+      alert(data.error.message);
+      console.log(data.error.message);
+    } else {
+      if (data.registered) {
+        localStorage.setItem("token", data.idToken);
         Ctx.setIsLogedIn(true);
         Ctx.setIdToken(data.idToken);
-        localStorage.setItem("token", data.idToken);
+        console.log(data.idToken);
         navigate("/store");
-      })
-      .catch((error) => {
-        alert(error.message);
-       
-      });
+      } else {
+        setIsLogin(true);
+      }
+    }
+
+    console.log(data);
+    setIsLodingIn(false);
   };
 
   return (

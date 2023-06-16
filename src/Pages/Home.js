@@ -14,31 +14,70 @@ const HomePage = () => {
       >
         Tours
       </h2>
-      <ListGroup style={{ display: "inline-block" }}>
-
-        <ListGroupItem style={{ borderBottom: " 1px solid black" }}>
-          JUL 16 <span>DETROIT DTE ENERGY MUSICE THEATE</span>{" "}
-          <Button style={{ marginLeft: "12rem" }}>BUY TICKETS</Button>
+      <ListGroup style={{ display: "inline-block" ,boxShadow:'1px 2px 1px 2px gold'}} >
+        <ListGroupItem style={{ borderBottom: "1px solid black" }}>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
+          >
+            <span>JUL 16 DETROIT DTE ENERGY MUSICE THEATE</span>
+            <Button>BUY TICKETS</Button>
+          </div>
         </ListGroupItem>
 
         <ListGroupItem style={{ borderBottom: " 1px solid black" }}>
-          JUL 19 <span>TORONTO,ON BUDWESTER STAGE</span>{" "}
-          <Button style={{ marginLeft: "12rem" }}>BUY TICKETS</Button>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
+          >
+            <span> JUL 19 TORONTO,ON BUDWESTER STAGE</span>
+            <Button style={{ marginLeft: "12rem" }}>BUY TICKETS</Button>
+          </div>
         </ListGroupItem>
 
         <ListGroupItem style={{ borderBottom: " 1px solid black" }}>
-          JUL 22 <span>BRISTOW, VA JIGGY LUBE LIVE</span>{" "}
-          <Button style={{ marginLeft: "12rem" }}>BUY TICKETS</Button>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
+          >
+            <span> JUL 22 BRISTOW, VA JIGGY LUBE LIVE</span>
+            <Button style={{ marginLeft: "12rem" }}>BUY TICKETS</Button>
+          </div>
         </ListGroupItem>
 
         <ListGroupItem style={{ borderBottom: " 1px solid black" }}>
-          JUL 29 <span>PHOENIX, AZ AK-CHIN PAVILION</span>{" "}
-          <Button style={{ marginLeft: "12rem" }}>BUY TICKETS</Button>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
+          >
+            <span> JUL 29 PHOENIX, AZ AK-CHIN PAVILION</span>
+            <Button style={{ marginLeft: "12rem" }}>BUY TICKETS</Button>
+          </div>
         </ListGroupItem>
 
         <ListGroupItem style={{ borderBottom: " 1px solid black" }}>
-          AGU 2 <span>LAS VEGAS, NV T-MOBILE ARENA</span>{" "}
-          <Button style={{ marginLeft: "12rem" }}>BUY TICKETS</Button>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
+          >
+            <span> AGU 2 LAS VEGAS, NV T-MOBILE ARENA</span>
+            <Button style={{ marginLeft: "12rem" }}>BUY TICKETS</Button>
+          </div>
         </ListGroupItem>
 
         <ListGroupItem style={{ borderBottom: " 1px solid black" }}>

@@ -11,7 +11,9 @@ const MyProfile = () => {
 
   const submitHandler = async (event) => {
     event.preventDefault();
-
+      
+ localStorage.getItem('token','');
+   
     const response = await fetch(
       "https://identitytoolkit.googleapis.com/v1/accounts:update?key=AIzaSyB9W4dGeTDItrXbHl_cEzNUGxRQsT6CLHU",
       {

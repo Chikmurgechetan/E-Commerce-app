@@ -1,5 +1,5 @@
-import { Route, Routes,Navigate } from "react-router-dom";
-import { useState } from "react";
+import { Route, Routes, Navigate } from "react-router-dom";
+import { useState,useEffect } from "react";
 import CartContainer from "./Components/Cart/CartContainer";
 import Header from "./Components/Header";
 import CartContext from "./Components/Context/CartContext";
@@ -14,8 +14,6 @@ import ContactUs from "./Pages/ContactUs";
 import ProductDetails from "./Pages/ProductDetails";
 import Login from "./Components/Authentication/Login";
 import MyProfile from "./Pages/MyProfile";
-
-
 
 const productsArr = [
   {
@@ -55,9 +53,22 @@ function App() {
   const [cartVisibility, setCartVisibility] = useState(false);
   const [orderList, setOrderList] = useState([]);
 
-  const[idToken, setIdToken]=useState('');
-  const[isLogedIn, setIsLogedIn] = useState(false)
-   
+  const [idToken, setIdToken] = useState("");
+  const [isLogedIn, setIsLogedIn] = useState(false);
+
+
+
+
+  useEffect(()=>{
+    if(isLogedIn){
+      setTimeout(()=>{
+        localStorage.setItem('token' , '')
+      },1*60*1000)
+      // return clearTimeout(timer);
+    }
+  },[isLogedIn])
+
+
 
   const ctxObj = {
     productsList: productsArr,
@@ -65,28 +76,27 @@ function App() {
     setCartVisibility: setCartVisibility,
     orderList: orderList,
     setOrderList: setOrderList,
-   
-    isLogedIn:isLogedIn,
-    setIsLogedIn:setIsLogedIn,
-    idToken:idToken,
-    setIdToken:setIdToken,
-    
+
+    isLogedIn: isLogedIn,
+    setIsLogedIn: setIsLogedIn,
+    idToken: idToken,
+    setIdToken: setIdToken,
   };
 
   return (
     <CartContext.Provider value={ctxObj}>
-   
-       <Header></Header>
+      <Header></Header>
       <Routes>
-       {isLogedIn && ( <Route path="/home" element={<HomePage />} />)}
-       <Route path="/store" element={<StorePage />} />
-      { isLogedIn && (   <Route path="/about" element={<AboutPage />} />)}
-      { isLogedIn && (   <Route path="/Contact" element={<ContactUs />} />)}
-       {isLogedIn && ( <Route path="/products/:productID" element={<ProductDetails />} />)}
-      {isLogedIn && (  <Route path="/profile" element={<MyProfile/>}/>)}
-      { !isLogedIn && ( <Route  exact path='/login' element={<Login />}/>)}
-     
-      <Route path="*" element={<Navigate to="/" replace />} />
+        {isLogedIn && <Route path="/home" element={<HomePage />} />}
+        <Route path="/store" element={<StorePage />} />
+        {isLogedIn && <Route path="/about" element={<AboutPage />} />}
+        {isLogedIn && <Route path="/Contact" element={<ContactUs />} />}
+        {isLogedIn && (
+          <Route path="/products/:productID" element={<ProductDetails />} />
+        )}
+        {isLogedIn && <Route path="/profile" element={<MyProfile />} />}
+        {!isLogedIn && <Route exact path="/login" element={<Login />} />}
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
 
       {cartVisibility && <CartContainer></CartContainer>}
