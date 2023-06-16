@@ -68,9 +68,7 @@ function App() {
     }
   },[isLogedIn])
 
-
-
-  const ctxObj = {
+const ctxObj = {
     productsList: productsArr,
     cartVisibility: cartVisibility,
     setCartVisibility: setCartVisibility,
