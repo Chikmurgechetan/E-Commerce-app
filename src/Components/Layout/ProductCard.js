@@ -1,18 +1,18 @@
 import { Card, Button, CardImg } from "react-bootstrap";
 import CartContext from "../Context/CartContext";
 import { useContext } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 
 function ProductCard(props) {
   const { id, title, price, imageSrc } = props.item;
   const ctx = useContext(CartContext);
-
+  const navigate = useNavigate();
 
   const orderList = [...ctx.orderList];
 
   const buttonClickHandler = () => {
-
+    if (ctx.isLogedIn) {
       const n = orderList.length;
       for (let i = 0; i <= n; i++) {
         if (i < n && orderList[i].id === id) {
@@ -24,7 +24,9 @@ function ProductCard(props) {
         }
       }
       ctx.setOrderList(orderList);
-    
+    } else{
+         navigate("/login")
+    }
   };
 
   return (
