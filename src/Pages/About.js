@@ -7,7 +7,14 @@ const AboutPage = () => {
       <Container>
         <Row>
           <Col>
-            <h2>ABOUT US</h2>
+            <h2    style={{
+            fontSize: "30px",
+            marginLeft:"3rem",
+            padding: "20px",
+            fontFamily: "initial",
+            fontWeight: "bold",
+         
+          }}> ABOUT US</h2>
             <div>
               <img
                 src={BandImage}

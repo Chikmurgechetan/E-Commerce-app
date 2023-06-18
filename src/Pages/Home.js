@@ -3,89 +3,111 @@ import { Button, ListGroup, ListGroupItem } from "react-bootstrap";
 
 const HomePage = () => {
   return (
-    <div style={{ textAlign: "center", padding: "20px 30px" }}>
-      <h2
+    <>
+      <div
         style={{
-          fontSize: "30px",
-          textAlign: "center",
-          padding: "20px",
-          fontFamily: "Metal Mania",
+          display: "flex",
+          justifyContent: "center",
+          background: "gray",
+          padding: "2rem",
+          marginTop: "0",
         }}
       >
-        Tours
-      </h2>
-      <ListGroup style={{ display: "inline-block" ,boxShadow:'1px 2px 1px 2px gold'}} >
-        <ListGroupItem style={{ borderBottom: "1px solid black" }}>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-            }}
-          >
-            <span>JUL 16 DETROIT DTE ENERGY MUSICE THEATE</span>
-            <Button>BUY TICKETS</Button>
-          </div>
-        </ListGroupItem>
+        <h1
+          style={{ border: "1px solid white", padding: "10px", color: "white" }}
+        >
+          Get our Latst Album
+        </h1>
+        <h1>⏭ </h1>
+      </div>
+      <div style={{ textAlign: "center", padding: "20px 30px" }}>
+        <h2
+          style={{
+            fontSize: "30px",
+            textAlign: "center",
+            padding: "20px",
+            fontFamily: "cursive",
+            fontWeight: "bold",
+            textDecoration: "underline black",
+          }}
+        >
+          TOURS
+        </h2>
+        <ListGroup
+          style={{ display: "inline-block", boxShadow: "1px 2px 1px 2px gold" }}
+        >
+          <ListGroupItem style={{ borderBottom: "1px solid black" }}>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+              }}
+            >
+              <span>JUL 16 DETROIT DTE ENERGY MUSICE THEATE</span>
+              <Button>BUY TICKETS</Button>
+            </div>
+          </ListGroupItem>
 
-        <ListGroupItem style={{ borderBottom: " 1px solid black" }}>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-            }}
-          >
-            <span> JUL 19 TORONTO,ON BUDWESTER STAGE</span>
+          <ListGroupItem style={{ borderBottom: " 1px solid black" }}>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+              }}
+            >
+              <span> JUL 19 TORONTO,ON BUDWESTER STAGE</span>
+              <Button style={{ marginLeft: "12rem" }}>BUY TICKETS</Button>
+            </div>
+          </ListGroupItem>
+
+          <ListGroupItem style={{ borderBottom: " 1px solid black" }}>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+              }}
+            >
+              <span> JUL 22 BRISTOW, VA JIGGY LUBE LIVE</span>
+              <Button style={{ marginLeft: "12rem" }}>BUY TICKETS</Button>
+            </div>
+          </ListGroupItem>
+
+          <ListGroupItem style={{ borderBottom: " 1px solid black" }}>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+              }}
+            >
+              <span> JUL 29 PHOENIX, AZ AK-CHIN PAVILION</span>
+              <Button style={{ marginLeft: "12rem" }}>BUY TICKETS</Button>
+            </div>
+          </ListGroupItem>
+
+          <ListGroupItem style={{ borderBottom: " 1px solid black" }}>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+              }}
+            >
+              <span> AGU 2 LAS VEGAS, NV T-MOBILE ARENA</span>
+              <Button style={{ marginLeft: "12rem" }}>BUY TICKETS</Button>
+            </div>
+          </ListGroupItem>
+
+          <ListGroupItem style={{ borderBottom: " 1px solid black" }}>
+            AUG 7 <span>CONCORD, CA CONCORD PAVILION</span>{" "}
             <Button style={{ marginLeft: "12rem" }}>BUY TICKETS</Button>
-          </div>
-        </ListGroupItem>
-
-        <ListGroupItem style={{ borderBottom: " 1px solid black" }}>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-            }}
-          >
-            <span> JUL 22 BRISTOW, VA JIGGY LUBE LIVE</span>
-            <Button style={{ marginLeft: "12rem" }}>BUY TICKETS</Button>
-          </div>
-        </ListGroupItem>
-
-        <ListGroupItem style={{ borderBottom: " 1px solid black" }}>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-            }}
-          >
-            <span> JUL 29 PHOENIX, AZ AK-CHIN PAVILION</span>
-            <Button style={{ marginLeft: "12rem" }}>BUY TICKETS</Button>
-          </div>
-        </ListGroupItem>
-
-        <ListGroupItem style={{ borderBottom: " 1px solid black" }}>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-            }}
-          >
-            <span> AGU 2 LAS VEGAS, NV T-MOBILE ARENA</span>
-            <Button style={{ marginLeft: "12rem" }}>BUY TICKETS</Button>
-          </div>
-        </ListGroupItem>
-
-        <ListGroupItem style={{ borderBottom: " 1px solid black" }}>
-          AUG 7 <span>CONCORD, CA CONCORD PAVILION</span>{" "}
-          <Button style={{ marginLeft: "12rem" }}>BUY TICKETS</Button>
-        </ListGroupItem>
-      </ListGroup>
-    </div>
+          </ListGroupItem>
+        </ListGroup>
+      </div>
+    </>
   );
 };
 export default HomePage;

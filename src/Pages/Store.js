@@ -12,10 +12,17 @@ function StorePage() {
   const productsArr = ctx.productsList;
   const productsList = productsArr.map((product) => {
     return (
-      <Col key={product.url}>
-        {" "}
+      <Col lg={6} key={product.id} style={{
+        display: "flex",
+        justifyContent: "center",
+        marginTop: "2rem",
+        paddingLeft: "0", paddingRight: "0",
+        marginRight: "-10rem",
+        marginLeft:"2rem"
+      }}>
+        
         <ProductCard item={product}></ProductCard>
-        {/* <ProductCard item={product}></ProductCard> */}
+        
       </Col>
     );
   });
@@ -24,6 +31,13 @@ function StorePage() {
     <>
      
       <Container>
+        <h1 style={{
+          fontSize: "30px",
+          textAlign: "center",
+          padding: "20px",
+          fontFamily:"cursive",
+          fontWeight: "bold"
+        }}>MUSIC</h1>
         <Row>{productsList}</Row>
       </Container>
     </>

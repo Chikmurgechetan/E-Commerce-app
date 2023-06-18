@@ -11,7 +11,7 @@ function CartContainer() {
   orderList.forEach((item) => {
     totalAmount += item.price * item.quantity;
   });
-  totalAmount = totalAmount.toFixed(2)
+  totalAmount = totalAmount.toFixed(2);
   return (
     <Container
       fluid
@@ -21,7 +21,6 @@ function CartContainer() {
         top: 60,
         right: 0,
         width: "30%",
-        
       }}
     >
       <Button
@@ -41,17 +40,15 @@ function CartContainer() {
           )}
         </Col>
       </Row>
-      
-          <hr />
-          <div className="d-flex justify-content-between">
-            <h5>Total Amount:</h5>
-            <h5>Rs. {totalAmount} </h5>
-          </div>
-          <Button variant="primary" block>
-            Place Order
-          </Button>
-      
-   
+
+      <hr />
+      <div className="d-flex justify-content-between">
+        <h5>Total Amount:</h5>
+        <h5>Rs. {totalAmount} </h5>
+      </div>
+      <Button variant="primary" block>
+        Place Order
+      </Button>
     </Container>
   );
 }

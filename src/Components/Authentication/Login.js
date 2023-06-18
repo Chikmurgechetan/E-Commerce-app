@@ -18,8 +18,6 @@ const Login = () => {
     setIsLogin((prevState) => !prevState);
   };
 
-
-
   const submitHandler = async (event) => {
     event.preventDefault();
 
@@ -69,6 +67,7 @@ const Login = () => {
   return (
     <>
       <Container className="mt-5">
+        <h1 style={{marginLeft:'17rem',fontStyle:'unset'}}>Welcome To My Store</h1>
         <div
           style={{
             border: "1px solid black",
