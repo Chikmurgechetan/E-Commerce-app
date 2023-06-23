@@ -1,24 +1,44 @@
+import React, { useContext } from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
 
-import OrderList from "./OrderList";
 import CartContext from "../Context/CartContext";
-import { useContext } from "react";
+import Cartitems from "./CartItems";
 
-function CartContainer() {
+const CartProducts = () => {
   const ctx = useContext(CartContext);
   const orderList = ctx.orderList;
+
   let totalAmount = 0;
   orderList.forEach((item) => {
     totalAmount += item.price * item.quantity;
   });
+
+  const updateQuantity = (id, quantity) => {
+    const updatedOrderList = orderList.map((item) => {
+      if (item.id === id) {
+        return { ...item, quantity: quantity };
+      }
+      return item;
+    });
+    ctx.setOrderList(updatedOrderList);
+  };
+
+
+
   totalAmount = totalAmount.toFixed(2);
+
+  const removeOrder = (id) => {
+    const updatedOrderList = orderList.filter((item) => item.id !== id);
+    ctx.setOrderList(updatedOrderList);
+  };
+
   return (
     <Container
       fluid
       className="bg-light p-3"
       style={{
         position: "fixed",
-        top: 60,
+        top: 77,
         right: 0,
         width: "30%",
       }}
@@ -33,8 +53,16 @@ function CartContainer() {
       <Row>
         <Col xs={12}>
           <h4 className="text-center mb-4">My Cart</h4>
+          <hr/>
           {orderList.length > 0 ? (
-            <OrderList orders={orderList} />
+            orderList.map((order) => (
+              <Cartitems
+                key={order.id}
+                product={order}
+                updateQuantity={updateQuantity}
+                removeOrder={removeOrder}
+              />
+            ))
           ) : (
             <p className="text-center">Your cart is empty.</p>
           )}
@@ -51,5 +79,6 @@ function CartContainer() {
       </Button>
     </Container>
   );
-}
-export default CartContainer;
+};
+
+export default CartProducts;

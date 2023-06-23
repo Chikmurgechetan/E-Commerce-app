@@ -5,11 +5,8 @@ const CartContext = React.createContext({
   setCartVisibility: () => {},
   orderList: [],
   setOrderList: () => {},
-  idToken:'',
-  setIdToken:(idToken)=>{},
-  isLogedIn:false,
-  setIsLogedIn:()=>{},
-
+  userEmail :"",
+  setUserEmail: () =>{}
 });
 
 export default CartContext;

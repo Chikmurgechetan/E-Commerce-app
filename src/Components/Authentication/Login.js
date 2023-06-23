@@ -1,7 +1,9 @@
-import React, { useRef, useState, useContext } from "react";
+import React, { useRef, useState, useContext} from "react";
 
 import { Button, Container, Form, FormGroup } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+
+import AuthoContext from "../Context/Auth-Context";
 import CartContext from "../Context/CartContext";
 
 const Login = () => {
@@ -12,7 +14,11 @@ const Login = () => {
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
 
-  const Ctx = useContext(CartContext);
+  const authCtx = useContext(AuthoContext);
+  const ctx  =useContext(CartContext);
+
+
+
 
   const switchHandler = () => {
     setIsLogin((prevState) => !prevState);
@@ -51,9 +57,15 @@ const Login = () => {
     } else {
       if (data.registered) {
         localStorage.setItem("token", data.idToken);
-        Ctx.setIsLogedIn(true);
-        Ctx.setIdToken(data.idToken);
-        console.log(data.idToken);
+        localStorage.setItem("email",enteredEmail)
+        localStorage.getItem("email");
+      //  authCtx.email(enteredEmail)
+          authCtx.login(true);
+          ctx.setUserEmail(enteredEmail);
+     //   authCtx.setEmail(enteredEmail);
+      //  console.log(data.idToken,enteredEmail);
+       // console.log(enteredEmail);
+   
         navigate("/store");
       } else {
         setIsLogin(true);
@@ -63,11 +75,14 @@ const Login = () => {
     console.log(data);
     setIsLodingIn(false);
   };
+ localStorage.getItem("email");
 
   return (
     <>
       <Container className="mt-5">
-        <h1 style={{marginLeft:'17rem',fontStyle:'unset'}}>Welcome To My Store</h1>
+        <h1 style={{ marginLeft: "17rem", fontStyle: "unset" }}>
+          Welcome To My Store
+        </h1>
         <div
           style={{
             border: "1px solid black",
@@ -98,6 +113,7 @@ const Login = () => {
                 ref={emailInputRef}
                 placeholder="Enter Your Email Id"
                 required
+             
               />
             </FormGroup>
             <FormGroup controlId="formBasicPassword">

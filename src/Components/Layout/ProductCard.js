@@ -1,18 +1,22 @@
 import { Card, Button, CardImg } from "react-bootstrap";
 import CartContext from "../Context/CartContext";
 import { useContext } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink,useNavigate } from "react-router-dom";
+import AuthoContext from "../Context/Auth-Context";
 
-
-function ProductCard(props) {
+function ProductCard (props) {
   const { id, title, price, imageSrc } = props.item;
   const ctx = useContext(CartContext);
+  const authCtx = useContext(AuthoContext);
   const navigate = useNavigate();
-
+ //  const apiUrl = ctx.databaseApi;
   const orderList = [...ctx.orderList];
 
-  const buttonClickHandler = () => {
-    if (ctx.isLogedIn) {
+ // const dataBaseName = ctx.dataBaseName;
+
+  const buttonClickHandler = (e) => {
+    e.preventDefault();
+  if( authCtx.isLoggedIn){
       const n = orderList.length;
       for (let i = 0; i <= n; i++) {
         if (i < n && orderList[i].id === id) {
@@ -24,10 +28,43 @@ function ProductCard(props) {
         }
       }
       ctx.setOrderList(orderList);
-    } else{
-         navigate("/login")
-    }
-  };
+    //  console.log(orderList);
+  }  else {
+      navigate("/login")
+  }
+      
+  
+  }
+  //     e.preventDefault();
+  //      if(ctx.isLogedIn === false){
+  //          return ;
+  //      }
+  //      const prdIndex = orderList.findIndex((i) => {
+  //       return i.id === id;
+  //   })
+  //   if (prdIndex === -1) {
+  //     try {
+  //         let res = await fetch(`${apiUrl}/${dataBaseName}.json`, {
+  //             method: 'POST',
+  //             headers: {
+  //                 'Content-Type': "application/json"
+  //             },
+  //             body: JSON.stringify({
+  //                 ...props.item,
+  //                 quantity: 1
+  //             })
+  //         })
+  //         let data = await res.json();
+  //         if (!res.ok) {
+  //             throw new Error(data.error.message);
+  //         }
+  //         console.log(data);
+  //     }
+  //     catch (err) {
+  //       alert(err.message);
+  //     };
+  //   }
+  // };
 
   return (
     <>

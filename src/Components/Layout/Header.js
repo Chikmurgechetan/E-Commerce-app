@@ -1,33 +1,30 @@
 import { Navbar, Container, Nav, Button } from "react-bootstrap";
-import { useContext, useEffect } from "react";
-import CartContext from "./Context/CartContext";
+import { useContext } from "react";
+import CartContext from "../Context/CartContext";
 import { Link } from "react-router-dom";
+import AuthoContext from "../Context/Auth-Context";
 
 function Header() {
+  
   const ctx = useContext(CartContext);
   const orderlist = ctx.orderList;
+  
+  const authCtx = useContext(AuthoContext);
+  const isLoggedIn = authCtx.isLoggedIn;
 
-  const LoggIn = ctx.isLogedIn;
   let cartItemCount = 0;
   orderlist.forEach((item) => {
     cartItemCount += item.quantity;
   });
 
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      ctx.setIsLogedIn(true);
-    }
-  }, [ctx]);
-
   const LogoutHandler = () => {
-    ctx.setIsLogedIn();
-    localStorage.removeItem("token");
+    authCtx.logout();
   };
 
   return (
     <Navbar
       bg="dark"
+      s
       variant="dark"
       expand="lg"
       style={{
@@ -70,19 +67,19 @@ function Header() {
             </Nav.Link>
           </Nav>
 
-      {LoggIn && ( <Nav>
-            <Nav.Link
-              as={Link}
-              to="/profile"
-              style={{ fontSize: "1.4rem", color: "white" }}
-            >
-              My Profile
-            </Nav.Link>
-          </Nav>
+          {isLoggedIn && (
+            <Nav>
+              <Nav.Link
+                as={Link}
+                to="/profile"
+                style={{ fontSize: "1.4rem", color: "white" }}
+              >
+                My Profile
+              </Nav.Link>
+            </Nav>
           )}
-
-          <Nav>
-            {!LoggIn && (
+          {!isLoggedIn && (
+            <Nav>
               <Nav.Link
                 as={Link}
                 to="/login"
@@ -90,15 +87,14 @@ function Header() {
                   fontSize: "1.5rem",
                   color: "blue",
                   marginRight: "10px",
-                  
                 }}
               >
                 LOGIN
               </Nav.Link>
-            )}
-          </Nav>
+            </Nav>
+          )}
 
-          {LoggIn && (
+          {isLoggedIn && (
             <Button
               variant=""
               style={{ fontSize: "1.2rem", color: "red" }}
@@ -107,9 +103,8 @@ function Header() {
               LOGOUT
             </Button>
           )}
-
-          <Nav>
-            {LoggIn && (
+          {authCtx.isLoggedIn && (
+            <Nav>
               <Button
                 variant="outline-warning"
                 onClick={() => ctx.setCartVisibility(!ctx.cartVisibility)}
@@ -117,8 +112,8 @@ function Header() {
               >
                 {`My Cart ${cartItemCount}`}
               </Button>
-            )}
-          </Nav>
+            </Nav>
+          )}
         </Navbar.Collapse>
       </Container>
     </Navbar>
