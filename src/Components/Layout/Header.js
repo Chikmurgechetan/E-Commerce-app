@@ -19,6 +19,7 @@ function Header() {
 
   const LogoutHandler = () => {
     authCtx.logout();
+    
   };
 
   return (

@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 const MyProfile = () => {
   const [newPasword, setNewPassword] = useState("");
   const authCtx = useContext(CartContext);
+  const ctx = useContext(CartContext);
   const navigate = useNavigate();
 
   const submitHandler = async (event) => {
@@ -48,7 +49,7 @@ const MyProfile = () => {
         <Col md={4}>
           <Image src={userImage} thumbnail />
           <h4 className="mt-2">Username</h4>
-          <p>Email: user-email</p>
+          <p>`Email:- {ctx.userEmail} `</p>
           <Form onSubmit={submitHandler}>
             <Form.Group controlId="formBasicPassword">
               <Form.Label>Password</Form.Label>
